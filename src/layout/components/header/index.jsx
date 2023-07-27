@@ -111,8 +111,6 @@ export default function MenuHeader(props) {
 
             <HeaderNotifications />
 
-            <HeaderCart />
-
             <HeaderUser />
           </Row>
         </Col>

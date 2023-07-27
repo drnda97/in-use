@@ -3,6 +3,26 @@ import { lazy } from "react";
 const PagesRoutes = [
   // COMPONENTS
   {
+    path: "/calendar",
+    component: lazy(() => import("../../view/pages/calendar")),
+    layout: "VerticalLayout",
+  },
+  {
+    path: "/company",
+    component: lazy(() => import("../../view/pages/contact")),
+    layout: "VerticalLayout",
+  },
+  {
+    path: "/link-details",
+    component: lazy(() => import("../../view/pages/ecommerce")),
+    layout: "VerticalLayout",
+  },
+  {
+    path: "/add-new-term",
+    component: lazy(() => import("../../view/pages/ecommerce")),
+    layout: "VerticalLayout",
+  },
+  {
     path: "/components/components-page",
     component: lazy(() => import("../../view/components/components-page")),
     layout: "VerticalLayout",

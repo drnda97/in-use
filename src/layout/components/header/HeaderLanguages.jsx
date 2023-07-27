@@ -12,7 +12,7 @@ export default function HeaderLanguages() {
 
   // Language
   const [activeLanguage, setActiveLanguage] = useState(customise.language)
-  const languages = ['en', 'tr', 'fr', 'es']
+  const languages = ['en', 'rs', 'it']
 
   useEffect(() => {
     setActiveLanguage(customise.language)
