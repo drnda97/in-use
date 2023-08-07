@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router';
 
 import { Row, Col } from "antd";
 
-import Inventory from './inventory';
+import Inventory from '../link-details';
 import OrderDetails from './checkout/OrderDetails';
 
 export default function Ecommerce() {

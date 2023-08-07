@@ -10,7 +10,7 @@ const main = [
         id: "dashboards-analytics",
         title: <IntlMessages id="sidebar-dashboards-analytics" />,
         icon: <Health size={18} />,
-        navLink: "/main/dashboard/analytics",
+        navLink: "/dashboard",
     },
 ];
 

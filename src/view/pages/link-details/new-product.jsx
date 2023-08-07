@@ -6,7 +6,7 @@ import { Row, Col, Checkbox, Upload, message, Button, Input, Card, Divider, Sele
 import { ArrowDown, ArrowDownSquare, ChevronDownCircle, Discovery, InfoSquare, Plus } from 'react-iconly';
 import { RiUploadCloud2Line, RiCheckboxCircleLine, RiCloseCircleLine } from "react-icons/ri";
 
-import BreadCrumbs from '../../../../layout/components/content/breadcrumbs';
+import BreadCrumbs from '../../../layout/components/content/breadcrumbs';
 
 const { Dragger } = Upload;
 const { TextArea } = Input;
@@ -265,7 +265,7 @@ export default function InventoryNewProduct() {
                                 <span className="hp-d-block h4 hp-mb-18">Preview</span>
 
                                 <div className="hp-border-radius hp-overflow-hidden hp-bg-black-10 hp-bg-dark-90 hp-mb-24 hp-text-center">
-                                    <img src={require(`../../../../assets/images/product/action-cam-1.png`)} alt="4K Action Cam" />
+                                    <img src={require(`src/assets/images/product/action-cam-1.png`)} alt="4K Action Cam" />
                                 </div>
 
                                 <Row justify="space-between">

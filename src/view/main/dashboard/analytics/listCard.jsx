@@ -58,8 +58,8 @@ export default function ListCard(props) {
 
                     <Col>
                       {
-                        item.price && (
-                          <span className="h5 hp-text-color-black-bg hp-text-color-dark-0">{item.price}</span>
+                        item.location && (
+                          <span className="h5 hp-text-color-black-bg hp-text-color-dark-0">{item.location}</span>
                         )
                       }
                     </Col>

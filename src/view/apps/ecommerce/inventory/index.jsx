@@ -109,7 +109,7 @@ export default function Inventory() {
                             </Col>
 
                             <Col>
-                                <Button type="primary" onClick={() => history.push('/apps/ecommerce/inventory-new-product')}>
+                                <Button type="primary" onClick={() => history.push('/apps/ecommerce/link-details-new-product')}>
                                     <Plus set="curved" size={18} />
                                     <span class="hp-ml-8">New Product</span>
                                 </Button>

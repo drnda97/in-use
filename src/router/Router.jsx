@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from "react";
+import {Suspense, useEffect, useState} from "react";
 
 // Motion
 import { motion } from 'framer-motion';
@@ -26,11 +26,16 @@ import FullLayout from "../layout/FullLayout";
 // Components
 import Analytics from "../view/main/dashboard/analytics";
 import Error404 from "../view/pages/errors/404";
+import Protected from "../protected/Protected";
+import Login from "../view/pages/authentication/login";
+import Cookies from "universal-cookie";
 
 export default function Router() {
+    const cookies = new Cookies();
     // Redux
-    const customise = useSelector(state => state.customise)
-    const dispatch = useDispatch()
+    const customise = useSelector(state => state.customise);
+    const dispatch = useDispatch();
+    const [isLoggedIn, setIsLoggedIn] = useState(cookies.get('token'));
 
     // Location
     const location = useHistory()
@@ -129,21 +134,23 @@ export default function Router() {
                                         exact={route.exact === true}
                                         render={(props) => {
                                             return (
-                                                <Suspense fallback={null}>
-                                                    {
-                                                        route.layout === 'FullLayout' ? (
-                                                            <route.component {...props} />
-                                                        ) : (
-                                                            <motion.div
-                                                                initial={{ opacity: 0, y: 50 }}
-                                                                animate={{ opacity: 1, y: 0 }}
-                                                                transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
-                                                            >
+                                                <Protected isLoggedIn={isLoggedIn}>
+                                                    <Suspense fallback={null}>
+                                                        {
+                                                            route.layout === 'FullLayout' ? (
                                                                 <route.component {...props} />
-                                                            </motion.div>
-                                                        )
-                                                    }
-                                                </Suspense>
+                                                            ) : (
+                                                                <motion.div
+                                                                    initial={{ opacity: 0, y: 50 }}
+                                                                    animate={{ opacity: 1, y: 0 }}
+                                                                    transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
+                                                                >
+                                                                    <route.component {...props} />
+                                                                </motion.div>
+                                                            )
+                                                        }
+                                                    </Suspense>
+                                                </Protected>
                                             );
                                         }}
                                     />
@@ -161,24 +168,29 @@ export default function Router() {
             <Switch>
                 {ResolveRoutes()}
 
-                 {/*Home Page */}
+                {/*Home Page */}
                 <Route
                     exact
                     path={'/'}
                     render={() => {
                         return (
-                            DefaultLayout == "HorizontalLayout" ? (
-                                <Layouts.HorizontalLayout>
-                                    <Analytics />
-                                </Layouts.HorizontalLayout>
-                            ) : (
-                                <Layouts.VerticalLayout>
-                                    <Analytics />
-                                </Layouts.VerticalLayout>
-                            )
+                            <Protected isLoggedIn={isLoggedIn}>
+                                {DefaultLayout == "HorizontalLayout" ? (
+                                    <Layouts.HorizontalLayout>
+                                        <Analytics/>
+                                    </Layouts.HorizontalLayout>
+                                ) : (
+                                    <Layouts.VerticalLayout>
+                                        <Analytics/>
+                                    </Layouts.VerticalLayout>
+                                )}
+                            </Protected>
                         )
                     }}
                 />
+                <Route path='/login'>
+                    <Login />
+                </Route>
 
                 {/* NotFound */}
                 <Route path='*'>

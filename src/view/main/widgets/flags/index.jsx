@@ -159,7 +159,7 @@ export default function FlagIcons() {
       <Col span={24}>
         <PageContent
           title="Flags"
-          desc={<span>You can use flags of this page <a className="hp-text-color-primary-2 hp-hover-text-color-black-10" href="https://catamphetamine.gitlab.io/country-flag-icons/3x2/index.html" target="_blank">country-flag-icons</a></span>}
+          desc={<span>You can use flags of this page <a className="hp-text-color-primary-2 hp-hover-text-color-black-10" href="https://catamphetamine.gitlab.io/country-flag-icons/3x2/index.html" target="_blank">countryReducer-flag-icons</a></span>}
           breadcrumb={[
             {
               title: "Main",

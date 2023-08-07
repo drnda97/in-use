@@ -34,7 +34,7 @@ export default function HistoryCard(props) {
                         <Col>
                           <div className="hp-border-radius-xl hp-cursor-pointer hp-border-1 hp-border-color-dark-80 hp-mr-16">
                             <div className={`hp-border-radius-lg hp-overflow-hidden hp-m-4 hp-d-flex${item.avatarBg}`} style={{ minWidth: 64, width: 64, height: 64 }}>
-                              <img src={item.avatar} alt="User" height="100%" />
+                              <img src={item.avatar} alt="User" height="100%" width="100%"/>
                             </div>
                           </div>
                         </Col>

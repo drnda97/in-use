@@ -5,7 +5,7 @@ import { Divider, Avatar, Row, Col } from "antd";
 import { RiSettings3Line } from "react-icons/ri";
 
 import IntlMessages from "../../lang/IntlMessages";
-import avatar from "../../../../assets/images/memoji/user-avatar-8.png";
+import avatar from "../../../../assets/images/users/profile.jpg";
 
 export default function MenuFooter(props) {
   return (
@@ -23,7 +23,7 @@ export default function MenuFooter(props) {
 
             <div className="hp-mt-6">
               <span className="hp-d-block hp-text-color-black-100 hp-text-color-dark-0 hp-p1-body" style={{ lineHeight: 1 }}>
-                Jane Doe
+                Tatjana Stanojevic
              </span>
 
               <Link

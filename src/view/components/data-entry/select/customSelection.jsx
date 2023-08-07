@@ -42,7 +42,7 @@ export default function SelectCustomSelection() {
           <Select
             mode="multiple"
             style={{ width: '100%' }}
-            placeholder="select one country"
+            placeholder="select one countryGroupReducer"
             defaultValue={['china']}
             onChange={handleChange}
             optionLabelProp="label"

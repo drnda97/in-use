@@ -192,12 +192,12 @@ export default function InfoProfile() {
           <ul>
             <li>
               <span className={listTitle}>Full Name</span>
-              <span className={listResult}>Edward Yıldırım</span>
+              <span className={listResult}>Tatjana Stanojevic</span>
             </li>
 
             <li className="hp-mt-18">
               <span className={listTitle}>Display Name</span>
-              <span className={listResult}>Edward.3</span>
+              <span className={listResult}>Tatjana Stanojevic</span>
             </li>
 
             <li className="hp-mt-18">
@@ -208,7 +208,7 @@ export default function InfoProfile() {
             <li className="hp-mt-18">
               <span className={listTitle}>Phone</span>
               <a className={listResult} href="tel:+900374323">
-                +90 037 43 23
+                +38166366366
               </a>
             </li>
 
@@ -242,17 +242,17 @@ export default function InfoProfile() {
           <ul>
             <li>
               <span className={listTitle}>Language</span>
-              <span className={listResult}>English</span>
+              <span className={listResult}>Serbian</span>
             </li>
 
             <li className="hp-mt-18">
               <span className={listTitle}>Date Format</span>
-              <span className={listResult}>YYY.d.M</span>
+              <span className={listResult}>YYYY.d.M</span>
             </li>
 
             <li className="hp-mt-18">
               <span className={listTitle}>Timezone</span>
-              <span className={listResult}>Cairo (GMT+3)</span>
+              <span className={listResult}>Belgrade (GMT+2)</span>
             </li>
           </ul>
         </Col>

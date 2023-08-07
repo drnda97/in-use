@@ -45,9 +45,9 @@ const apps = [
                         navLink: "/apps/ecommerce/checkout",
                     },
                     {
-                        id: "inventory",
+                        id: "link-details",
                         title: <IntlMessages id="sidebar-apps-ecommerce-inventory" />,
-                        navLink: "/apps/ecommerce/inventory",
+                        navLink: "/apps/ecommerce/link-details",
                     },
                 ],
             },

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Dropdown, Col, Divider, Row } from "antd";
 import { UserOctagon, Flag, Calendar, Calculator } from 'iconsax-react';
 
-import avatarImg from "../../../assets/images/memoji/user-avatar-4.png";
+import avatarImg from "../../../assets/images/users/profile.jpg";
 
 export default function HeaderUser() {
   const menu = (

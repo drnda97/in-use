@@ -14,7 +14,7 @@ import {
 } from "react-iconly";
 
 import menuImg from "../../../assets/images/pages/profile/menu-img.svg";
-import avatar from "../../../assets/images/memoji/memoji-1.png";
+import avatar from "../../../assets/images/users/profile.jpg";
 
 export default function MenuProfile(props) {
   const menuIconClass = "remix-icon hp-mr-8";
@@ -49,16 +49,16 @@ export default function MenuProfile(props) {
   return (
     <Col flex="240px" className="hp-profile-menu hp-py-24">
       <div className="hp-w-100">
-        <div className="hp-profile-menu-header hp-mt-md-16 hp-text-center">
+        <div className="hp-mt-md-16 hp-text-center">
           {moreBtn()}
 
-          <Badge count={12}>
+          <Badge>
             <Avatar size={80} src={avatar} />
           </Badge>
 
-          <h3 className="hp-mt-24 hp-mb-4">Dolores Bianca</h3>
+          <h3 className="hp-mt-24 hp-mb-4">Tatjana Stanojevic</h3>
           <a href="mailto:dolores@yoda.com" className="hp-p1-body">
-            dolores@yoda.com
+            test@test.com
           </a>
         </div>
 

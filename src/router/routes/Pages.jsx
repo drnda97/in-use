@@ -8,13 +8,18 @@ const PagesRoutes = [
     layout: "VerticalLayout",
   },
   {
+    path: "/search-jobs",
+    component: lazy(() => import("../../view/pages/search-jobs")),
+    layout: "VerticalLayout",
+  },
+  {
     path: "/company",
     component: lazy(() => import("../../view/pages/contact")),
     layout: "VerticalLayout",
   },
   {
-    path: "/link-details",
-    component: lazy(() => import("../../view/pages/ecommerce")),
+    path: "/link-details/:id",
+    component: lazy(() => import("../../view/pages/link-details")),
     layout: "VerticalLayout",
   },
   {
@@ -260,7 +265,7 @@ const PagesRoutes = [
 
   // MAIN
   {
-    path: "/main/dashboard/analytics",
+    path: "/dashboard/",
     component: lazy(() => import("../../view/main/dashboard/analytics")),
     layout: "VerticalLayout",
   },
@@ -372,12 +377,12 @@ const PagesRoutes = [
     layout: "VerticalLayout",
   },
   {
-    path: "/apps/ecommerce/inventory",
+    path: "/apps/ecommerce/link-details",
     component: lazy(() => import("../../view/apps/ecommerce")),
     layout: "VerticalLayout",
   },
   {
-    path: "/apps/ecommerce/inventory-new-product",
+    path: "/apps/ecommerce/link-details-new-product",
     component: lazy(() => import("../../view/apps/ecommerce/inventory/new-product")),
     layout: "VerticalLayout",
   },
@@ -467,17 +472,17 @@ const PagesRoutes = [
     layout: "VerticalLayout",
   },
   {
-    path: "/pages/search-engines",
+    path: "/search-engines",
     component: lazy(() => import("../../view/pages/search-engines")),
     layout: "VerticalLayout",
   },
   {
-    path: "/pages/country",
+    path: "/country",
     component: lazy(() => import("../../view/pages/country")),
     layout: "VerticalLayout",
   },
   {
-    path: "/pages/country-group",
+    path: "/country-group",
     component: lazy(() => import("../../view/pages/country-group")),
     layout: "VerticalLayout",
   },
