@@ -221,7 +221,7 @@ export default function Country() {
                 }
             >
                 <ol>
-                    {data?.map((info) => (
+                    {data && data?.map((info) => (
                         <li>{info.name ? info.name : info.group_name}</li>
                     ))}
                 </ol>
