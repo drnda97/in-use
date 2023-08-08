@@ -4,15 +4,18 @@ import {Dropdown, Col, Divider, Row} from "antd";
 import {UserOctagon, Flag, Calendar, Calculator} from 'iconsax-react';
 
 import avatarImg from "../../../assets/images/users/profile.jpg";
-import Cookies from "universal-cookie";
+import {removeCookies} from "../../../plugins/token-data";
+import {useDispatch} from "react-redux";
+import {setToken, setUserData} from "../../../redux/auth/authReducer";
 
 export default function HeaderUser() {
-    const cookies = new Cookies();
+    const dispatch = useDispatch();
 
-    const logout = () => {
-        cookies.remove('token');
-        cookies.remove('refresh_token');
-        window.location = "/login"
+    const logout = async () => {
+        removeCookies();
+        await dispatch(setUserData([]));
+        await dispatch(setToken(null));
+        location.reload();
     }
 
     const menu = (

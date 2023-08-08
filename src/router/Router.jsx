@@ -35,7 +35,7 @@ export default function Router() {
     // Redux
     const customise = useSelector(state => state.customise);
     const dispatch = useDispatch();
-    const [isLoggedIn, setIsLoggedIn] = useState("eyJhbGciOiJIUzUxMiJ9.eyJjb21wYW55X2lkIjoxLCJzdXBlcl9hZG1pbiI6dHJ1ZSwibmFtZSI6Ikl2YW4gS2FkaWMiLCJpZCI6MSwiZW1haWwiOiJpdmFuQGJyYW5kc2NoZWNrZXIuY29tIiwiaWF0IjoxNjkxNDg4NDgxLCJleHAiOjE2OTE1MDY0ODF9.pg8n0aLm6INR8ctUb7zWrc2cxGnQqFt3Yu8dMwNn_emDQRJoA6pUNvDYZYP8AP8F4UoMObEtxNEi0QmKLBiAwQ");
+    const [isLoggedIn, setIsLoggedIn] = useState(cookies.get('token'));
 
     // Location
     const location = useHistory()

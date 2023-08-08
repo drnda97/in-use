@@ -2,8 +2,7 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
-// const token = cookies.get('token');
-const token = "eyJhbGciOiJIUzUxMiJ9.eyJjb21wYW55X2lkIjoxLCJzdXBlcl9hZG1pbiI6dHJ1ZSwibmFtZSI6Ikl2YW4gS2FkaWMiLCJpZCI6MSwiZW1haWwiOiJpdmFuQGJyYW5kc2NoZWNrZXIuY29tIiwiaWF0IjoxNjkxNDg4NDgxLCJleHAiOjE2OTE1MDY0ODF9.pg8n0aLm6INR8ctUb7zWrc2cxGnQqFt3Yu8dMwNn_emDQRJoA6pUNvDYZYP8AP8F4UoMObEtxNEi0QmKLBiAwQ";
+const token = cookies.get('token');
 
 const domain = 'https://aws-api.brandschecker.com:8443/trademark_check';
 export const apiUrl = `${domain}/api/v1`;

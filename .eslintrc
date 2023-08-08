@@ -1,7 +1,14 @@
 {
-    "rules": {
-      "no-warning-comments": "off",
-      "no-console": "off"
-    }
+  "rules": {
+    "no-warning-comments": "off",
+    "no-console": "off"
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "ecmaFeatures": {
+    "ecmaVersion": "2015"
   }
+}
+
   

@@ -7,10 +7,8 @@ import LeftContent from "../leftContent";
 import Footer from "../footer";
 import {useDispatch} from "react-redux";
 import {login} from "../../../../redux/auth/authActions";
-import Cookies from "universal-cookie";
 
 export default function Login() {
-    const cookies = new Cookies();
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState("");
@@ -21,11 +19,7 @@ export default function Login() {
         formData.append('email', email);
         formData.append('password', password);
 
-        await dispatch(login(formData)).then((res) => {
-            cookies.set('token', res.payload.data.token);
-            cookies.set('refresh-token', res.payload.data.refresh_token);
-            // window.location = "/"
-        });
+        await dispatch(login(formData));
     }
     return (
         <Row gutter={[32, 0]} className="hp-authentication-page">

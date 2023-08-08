@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { login } from './authActions';
+import {getDataFromToken} from "../../plugins/token-data";
 
 const initialState = {
     userToken: "",
+    userData: [],
     isLoggedIn: false,
     status: true,
 };
@@ -18,6 +20,12 @@ export const authReducer = createSlice({
                 ...{ userToken: payload },
             };
         },
+        setUserData: (state, { payload }) => {
+            return {
+                ...state,
+                ...{ userToken: payload },
+            };
+        },
     },
     extraReducers: {
         [login.pending]: (state) => {
@@ -25,6 +33,7 @@ export const authReducer = createSlice({
         },
         [login.fulfilled]: (state, { payload }) => {
             state.userToken = payload.data.token;
+            state.userData = getDataFromToken(payload.data.token);
             state.status = false;
         },
         [login.rejected]: (state) => {
@@ -33,6 +42,6 @@ export const authReducer = createSlice({
     },
 });
 
-export const {setToken} = authReducer.actions;
+export const {setToken, setUserData} = authReducer.actions;
 
 export default authReducer.reducer;
