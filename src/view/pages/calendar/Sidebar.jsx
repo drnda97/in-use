@@ -8,21 +8,21 @@ import illustration from "../../../assets/images/apps/calendar/sidebar.svg";
 // Filters
 const filters = [
   {
-    label: "Travel",
+    label: "Trademark",
     color: "travel",
   },
-  {
-    label: "Social",
-    color: "social",
-  },
-  {
-    label: "Work",
-    color: "work",
-  },
-  {
-    label: "Important",
-    color: "important",
-  },
+  // {
+  //   label: "Social",
+  //   color: "social",
+  // },
+  // {
+  //   label: "Work",
+  //   color: "work",
+  // },
+  // {
+  //   label: "Important",
+  //   color: "important",
+  // },
 ];
 
 const Sidebar = (props) => {

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Col, Row } from "antd";
+import {Link} from "react-router-dom";
 
 export default function ListCard(props) {
   return (
@@ -23,6 +24,8 @@ export default function ListCard(props) {
             {
               props.list.map((item, index) => (
                 <Col span={24} key={index} className="hp-cursor-pointer hp-transition hp-hover-bg-dark-100 hp-hover-bg-black-10 hp-border-radius hp-py-8">
+
+                  <Link to={`/link-details/${item.id}`}>
                   <Row align="bottom" justify="space-between">
                     <Col>
                       <Row align="middle">
@@ -64,6 +67,7 @@ export default function ListCard(props) {
                       }
                     </Col>
                   </Row>
+                  </Link>
                 </Col>
               ))
             }

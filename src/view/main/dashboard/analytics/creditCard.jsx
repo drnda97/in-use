@@ -49,7 +49,7 @@ export default function CreditCard() {
         <Col span={24} className="hp-mt-16" style={{ marginBottom: -16 }}>
           <Row align="middle" justify="space-between">
             <Col>
-              <span className="hp-caption hp-font-weight-500 hp-text-color-black-0">Edward Adams</span>
+              <span className="hp-caption hp-font-weight-500 hp-text-color-black-0">MSA IP LAW</span>
             </Col>
 
             <Col className="hp-d-flex">

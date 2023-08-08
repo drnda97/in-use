@@ -13,6 +13,8 @@ export default function Country() {
 
     const [edit, setEdit] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isDataModalOpen, setIsDataModalOpen] = useState(false);
+    const [data, setData] = useState(false);
     const [countryName, setCountryName] = useState("");
     const [countryCode, setCountryCode] = useState("");
     const [languageCode, setLanguageCode] = useState("");
@@ -36,6 +38,15 @@ export default function Country() {
 
     const handleCancel = () => {
         setIsModalOpen(false);
+    };
+
+    const showDataModal = (search, data = null) => {
+        setData(search ? data.search_engines : data.country_group);
+        setIsDataModalOpen(true);
+    };
+
+    const handleCancelData = () => {
+        setIsDataModalOpen(false);
     };
 
     useEffect(() => {
@@ -68,14 +79,14 @@ export default function Country() {
         </div>
     );
 
-    const searchEngineColumn = (
-        <div className={"text-center"}>
+    const searchEngineColumn = (data) => (
+        <div className={"text-center"} onClick={() => showDataModal(true, data)}>
             <Eye size="22" className="hp-text-color-black-80 hp-text-color-dark-30 cursor-pointer"/>
         </div>
     )
 
-    const countryGroupColumn = (
-        <div className={"text-center"}>
+    const countryGroupColumn = (data) => (
+        <div className={"text-center"} onClick={() => showDataModal(false, data)}>
             <Eye size="22" className="hp-text-color-black-80 hp-text-color-dark-30 cursor-pointer"/>
         </div>
     )
@@ -105,13 +116,13 @@ export default function Country() {
             title: 'Search engines',
             dataIndex: '',
             key: 'id',
-            render: () => searchEngineColumn,
+            render: (data) => searchEngineColumn(data),
         },
         {
             title: 'Country Group',
             dataIndex: '',
             key: 'language_code',
-            render: () => countryGroupColumn,
+            render: (data) => countryGroupColumn(data),
         },
         {
             title: 'Action',
@@ -197,6 +208,23 @@ export default function Country() {
                         </Col>
                     </Row>
                 </Form>
+            </Modal>
+            <Modal
+                title={`View Country`}
+                width={420}
+                centered
+                visible={isDataModalOpen}
+                onCancel={handleCancelData}
+                footer={null}
+                closeIcon={
+                    <RiCloseFill className="remix-icon text-color-black-100" size={24}/>
+                }
+            >
+                <ol>
+                    {data?.map((info) => (
+                        <li>{info.name ? info.name : info.group_name}</li>
+                    ))}
+                </ol>
             </Modal>
         </>
     );

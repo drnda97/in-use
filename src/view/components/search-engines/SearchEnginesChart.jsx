@@ -14,8 +14,8 @@ const SearchEnginesChart = () => {
             {
                 name: "Balance",
                 data: [
-                    28877, 29334, 33233, 36439, 32675, 32333, 33457, 38345, 36783, 39457,
-                    22459,
+                    123, 321, 111, 321, 112, 213, 54, 12, 333, 156,
+                    390,
                 ],
             },
         ],
@@ -107,11 +107,11 @@ const SearchEnginesChart = () => {
                         fontSize: "14px",
                     },
                     formatter: (value) => {
-                        return value == '0' ? value / 1000 : value / 1000 + "K";
+                        return value;
                     },
                 },
                 min: 0,
-                max: 60000,
+                max: 400,
                 tickAmount: 4,
             },
         },

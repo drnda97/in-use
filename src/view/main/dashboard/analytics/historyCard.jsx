@@ -10,7 +10,7 @@ export default function HistoryCard(props) {
       <Row gutter={[0, 16]} align="middle" justify="space-between">
         <Col sm={12} span={24}>
           <span className="h3 hp-font-weight-600 hp-text-color-black-bg hp-text-color-dark-0 hp-d-block">History</span>
-          <p className="hp-p1-body hp-mt-4 hp-mb-0">Transection of last 6 months</p>
+          <p className="hp-p1-body hp-mt-4 hp-mb-0">Checking in the last week</p>
         </Col>
 
         <Col>

@@ -13,8 +13,8 @@ export default function BalanceCard() {
       {
         name: "Balance",
         data: [
-          28877, 29334, 33233, 36439, 32675, 32333, 33457, 38345, 36783, 39457,
-          22459, 39840,
+          18, 10, 2, 3, 4, 5, 6, 7, 8, 9,
+          1, 1,
         ],
       },
     ],
@@ -78,18 +78,18 @@ export default function BalanceCard() {
           },
         },
         categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
+          "Optimel",
+          "Optimer",
+          "Optimed",
+          "Optimen",
+          "Opti-men",
+          "Optimee",
+          "Opti medic",
+          "OptiMind",
+          "OPTIMEDICO",
+          "OPTIMed",
+          "Optipharm",
+          "Opticause",
         ],
       },
       legend: {
@@ -107,11 +107,11 @@ export default function BalanceCard() {
             fontSize: "14px",
           },
           formatter: (value) => {
-            return value == '0' ? value / 1000 : value / 1000 + "K";
+            return value;
           },
         },
         min: 0,
-        max: 60000,
+        max: 20,
         tickAmount: 4,
       },
     },
@@ -122,8 +122,8 @@ export default function BalanceCard() {
       <Col span={24} className="hp-mb-18">
         <Row align="middle" justify="space-between">
           <Col>
-            <span className="hp-d-block hp-p1-body">Balance</span>
-            <span className="hp-d-block hp-mt-4 h3 hp-font-weight-600 hp-text-color-black-bg hp-text-color-dark-0">$12.389</span>
+            <span className="hp-d-block hp-p1-body">Total Results</span>
+            <span className="hp-d-block hp-mt-4 h3 hp-font-weight-600 hp-text-color-black-bg hp-text-color-dark-0">123</span>
           </Col>
 
           <Col>

@@ -22,7 +22,7 @@ const data = {
     {
       id: 1,
       url: "",
-      title: "Design Review",
+      title: "Optimer",
       start: date,
       end: nextDay,
       allDay: false,
@@ -33,7 +33,7 @@ const data = {
     {
       id: 2,
       url: "",
-      title: "Meeting With Client",
+      title: "Optimel",
       start: new Date(date.getFullYear(), date.getMonth() + 1, -11),
       end: new Date(date.getFullYear(), date.getMonth() + 1, -10),
       allDay: true,
@@ -44,7 +44,7 @@ const data = {
     {
       id: 3,
       url: "",
-      title: "Family Trip",
+      title: "Optimed",
       allDay: true,
       start: new Date(date.getFullYear(), date.getMonth() + 1, -9),
       end: new Date(date.getFullYear(), date.getMonth() + 1, -7),
@@ -55,7 +55,7 @@ const data = {
     {
       id: 4,
       url: "",
-      title: "Doctor's Appointment",
+      title: "Optee",
       start: new Date(date.getFullYear(), date.getMonth() + 1, -11),
       end: new Date(date.getFullYear(), date.getMonth() + 1, -10),
       allDay: true,
@@ -66,7 +66,7 @@ const data = {
     {
       id: 6,
       url: "",
-      title: "Meditation",
+      title: "OPTIMEL",
       start: new Date(date.getFullYear(), date.getMonth() + 1, -13),
       end: new Date(date.getFullYear(), date.getMonth() + 1, -12),
       allDay: true,
@@ -77,7 +77,7 @@ const data = {
     {
       id: 7,
       url: "",
-      title: "Dinner",
+      title: "OptMed",
       start: new Date(date.getFullYear(), date.getMonth() + 1, -13),
       end: new Date(date.getFullYear(), date.getMonth() + 1, -12),
       allDay: true,
@@ -88,34 +88,12 @@ const data = {
     {
       id: 8,
       url: "",
-      title: "Product Review",
+      title: "Opt-mer",
       start: new Date(date.getFullYear(), date.getMonth() + 1, -13),
       end: new Date(date.getFullYear(), date.getMonth() + 1, -12),
       allDay: true,
       extendedProps: {
         calendar: "Work",
-      },
-    },
-    {
-      id: 9,
-      url: "",
-      title: "Monthly Meeting",
-      start: nextMonth,
-      end: nextMonth,
-      allDay: true,
-      extendedProps: {
-        calendar: "Work",
-      },
-    },
-    {
-      id: 10,
-      url: "",
-      title: "Monthly Checkup",
-      start: prevMonth,
-      end: prevMonth,
-      allDay: true,
-      extendedProps: {
-        calendar: "Important",
       },
     },
   ],

@@ -44,7 +44,7 @@ export default function LinkDetails() {
                         }
                     })
                     setArray(res.payload.data.content);
-                    setNewArray(array);
+                    // setNewArray(array);
                     setTotalPages(res.payload.data.totalElements)
                 }
             });

@@ -108,14 +108,14 @@ export default function SearchEngines() {
                     <RiCloseFill className="remix-icon text-color-black-100" size={24} />
                 }
             >
-                {/*<Form layout="vertical" name="basic" initialValues={{ name, url }}>*/}
-                {/*    <Form.Item label="Name" name="name">*/}
+                <Form layout="vertical" name="basic" initialValues={{ name, url }}>
+                    <Form.Item label="Name" name="name">
                         <Input defaultValue={name} onChange={(e) => setName(e.target.value)} />
-                    {/*</Form.Item>*/}
+                    </Form.Item>
 
-                    {/*<Form.Item label="Url" name="url">*/}
+                    <Form.Item label="Url" name="url">
                         <Input defaultValue={url} onChange={(e) => setUrl(e.target.value)} />
-                    {/*</Form.Item>*/}
+                    </Form.Item>
                     <Row>
                         <Col md={12} span={24} className="hp-pr-sm-0 hp-pr-12">
                             <Button
@@ -133,7 +133,7 @@ export default function SearchEngines() {
                             </Button>
                         </Col>
                     </Row>
-                {/*</Form>*/}
+                </Form>
             </Modal>
                 <SearchEnginesChart/>
                 <div className={"d-flex justify-content-between mb-4"}>

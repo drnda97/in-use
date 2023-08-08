@@ -24,7 +24,7 @@ export default function Login() {
         await dispatch(login(formData)).then((res) => {
             cookies.set('token', res.payload.data.token);
             cookies.set('refresh-token', res.payload.data.refresh_token);
-            window.location = "/"
+            // window.location = "/"
         });
     }
     return (

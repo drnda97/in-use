@@ -60,7 +60,7 @@ export default function Analytics() {
                                             className="hp-text-color-black-bg hp-text-color-dark-0"
                                         />
                                     }
-                                    title='Income'
+                                    title='Total Results'
                                     titleIcon={
                                         <ExportSquare
                                             size="14"
@@ -68,8 +68,8 @@ export default function Analytics() {
                                             className="hp-text-color-success-1"
                                         />
                                     }
-                                    date='April 2022'
-                                    price='$13,908'
+                                    date='July 2023'
+                                    price='123'
                                 />
                             </Col>
 
@@ -82,7 +82,7 @@ export default function Analytics() {
                                             className="hp-text-color-black-bg hp-text-color-dark-0"
                                         />
                                     }
-                                    title='Expenses'
+                                    title='Total Markets'
                                     titleIcon={
                                         <ImportSquare
                                             size="14"
@@ -90,8 +90,8 @@ export default function Analytics() {
                                             className="hp-text-color-danger-1"
                                         />
                                     }
-                                    date='April 2022'
-                                    price='$7,949'
+                                    date='July 2023'
+                                    price='81'
                                 />
                             </Col>
 
@@ -104,9 +104,9 @@ export default function Analytics() {
                                             className="hp-text-color-black-bg hp-text-color-dark-0"
                                         />
                                     }
-                                    title='Balance'
-                                    date='April 2022'
-                                    price='$5,129'
+                                    title='Trademarks'
+                                    date='July 2023'
+                                    price='128'
                                 />
                             </Col>
                         </Row>
@@ -123,28 +123,28 @@ export default function Analytics() {
                                     avatar: HistoryUser1,
                                     avatarBg: ' hp-bg-danger-4',
                                     name: 'Tatjana Stanojevic',
-                                    title: 'Product Designer',
-                                    price: '7734.32',
-                                    number: '30432',
-                                    percent: '23.23%'
+                                    title: 'Trademark Paralegal',
+                                    price: '61',
+                                    number: '',
+                                    percent: '97.1%'
                                 },
                                 {
                                     avatar: HistoryUser2,
                                     avatarBg: ' hp-bg-info-4',
                                     name: 'Mirjana Saric',
-                                    title: 'Product Designer',
-                                    price: '7614.43',
-                                    number: '949',
-                                    percent: '19.03%'
+                                    title: 'Trademark Paralegal',
+                                    price: '19',
+                                    number: '',
+                                    percent: '98%'
                                 },
                                 {
                                     avatar: HistoryUser3,
                                     avatarBg: ' hp-bg-warning-4',
                                     name: 'Natasa Stankovic',
-                                    title: 'Product Designer',
-                                    price: '6789.19',
-                                    number: '732',
-                                    percent: '13.98%'
+                                    title: 'Trademark Paralegal',
+                                    price: '43',
+                                    number: '',
+                                    percent: '93%'
                                 }
                             ]}
                         />
@@ -172,6 +172,7 @@ export default function Analytics() {
                             date=''
                             list={finished?.map((finish) => {
                                 return {
+                                    id: finish.id,
                                     img: GoogleLogo,
                                     title: finish.term,
                                     date: finish.search_date.replaceAll("-", " "),
@@ -187,6 +188,7 @@ export default function Analytics() {
                             date=''
                             list={notFinished[0]?.map((finish, index) => {
                                 return {
+                                    id: finish.id,
                                     img: GoogleLogo,
                                     title: finish.term,
                                     date: finish.search_date.replaceAll("-", " "),
