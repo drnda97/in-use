@@ -10,7 +10,7 @@ export default function Contact() {
 
   return (
     <Switch>
-      <Route exact path="/apps/contact">
+      <Route exact path="/company">
         <Table />
       </Route>
 

@@ -1,36 +1,33 @@
 import React, {useEffect, useState} from "react";
-import {Row, Col, Button, Tooltip, Modal, Form, Input, DatePicker} from "antd";
+import {Row, Col, Button, Tooltip, Modal, Form, Input, Popconfirm} from "antd";
 import CustomizedFilterPanelTable from "../../components/data-display/table/customizedFilterPanel";
 import {useDispatch, useSelector} from "react-redux";
-import {createCountry, getCountries, updateCountry} from "../../../redux/country/countryActions";
-import {Link} from "react-router-dom";
+import {createCountry, deleteCountry, getCountries, updateCountry} from "../../../redux/country/countryActions";
 import {Eye, PenAdd, Trash} from "iconsax-react";
-import {RiCalendarLine, RiCloseFill} from "react-icons/ri";
+import {RiCloseFill} from "react-icons/ri";
 
 export default function Country() {
     const dispatch = useDispatch();
+    const [form] = Form.useForm();
+
     const {countries} = useSelector((state) => state.country);
 
     const [edit, setEdit] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDataModalOpen, setIsDataModalOpen] = useState(false);
     const [data, setData] = useState(false);
-    const [countryName, setCountryName] = useState("");
-    const [countryCode, setCountryCode] = useState("");
-    const [languageCode, setLanguageCode] = useState("");
-    const [googleExt, setGoogleExt] = useState("");
 
     const showModal = (edit, data = null) => {
         if (data) {
-            setCountryName(data.country_name);
-            setCountryCode(data.iso2);
-            setLanguageCode(data.language_code);
-            setGoogleExt(data.google_extension);
+            form.setFieldsValue({countryName: data.country_name});
+            form.setFieldsValue({iso2: data.iso2});
+            form.setFieldsValue({languageCode: data.language_code});
+            form.setFieldsValue({googleExtension: data.google_extension});
         } else {
-            setCountryName("");
-            setCountryCode("");
-            setLanguageCode("");
-            setGoogleExt("");
+            form.setFieldsValue({countryName: ''});
+            form.setFieldsValue({iso2: ''});
+            form.setFieldsValue({languageCode: ''});
+            form.setFieldsValue({googleExtension: ''});
         }
         setEdit(edit);
         setIsModalOpen(true);
@@ -50,8 +47,18 @@ export default function Country() {
     };
 
     useEffect(() => {
-        dispatch(getCountries());
+        getData();
     }, []);
+
+    const confirm = async (data) => {
+        let params = {
+            id: data.id
+        }
+        const formData = new FormData;
+        formData.append('id', data.id)
+        await dispatch(deleteCountry(params));
+        await getData();
+    };
 
     const actionButtons = (data) => (
         <div className={"d-flex"}>
@@ -66,16 +73,22 @@ export default function Country() {
                     }
                 />
             </Tooltip>
-            {/*<Tooltip title="Delete">*/}
-            {/*    <Button*/}
-            {/*        ghost*/}
-            {/*        type="primary"*/}
-            {/*        className="hp-border-none hp-hover-bg-black-10 hp-hover-bg-dark-100"*/}
-            {/*        icon={*/}
-            {/*            <Trash size="22" className="hp-text-color-black-80 hp-text-color-dark-30"/>*/}
-            {/*        }*/}
-            {/*    />*/}
-            {/*</Tooltip>*/}
+            <Popconfirm
+                title="Delete country"
+                description="Are you sure to delete this Country?"
+                onConfirm={() => confirm(data)}
+                okText="Yes"
+                cancelText="No"
+            >
+                <Button
+                    ghost
+                    type="primary"
+                    className="hp-border-none hp-hover-bg-black-10 hp-hover-bg-dark-100"
+                    icon={
+                        <Trash size="22" className="hp-text-color-black-80 hp-text-color-dark-30"/>
+                    }
+                />
+            </Popconfirm>
         </div>
     );
 
@@ -132,21 +145,27 @@ export default function Country() {
         },
     ];
 
-    const updateData = async () => {
+    const getData = async () => {
+        await dispatch(getCountries());
+    }
+
+    const updateData = async (values) => {
         const params = {
-            country_name: countryName,
-            google_extension: googleExt,
-            iso2: countryCode,
-            language_code: languageCode
+            country_name: values.countryName,
+            google_extension: values.googleExtension,
+            iso2: values.iso2,
+            language_code: values.languageCode
         }
         if (edit) {
             params.id = edit;
             await dispatch(createCountry(params));
-            handleCancel()
+            handleCancel();
+            await getData();
             return
         }
         await dispatch(updateCountry(params));
-        handleCancel()
+        handleCancel();
+        await getData();
 
     }
 
@@ -172,21 +191,21 @@ export default function Country() {
                     <RiCloseFill className="remix-icon text-color-black-100" size={24}/>
                 }
             >
-                <Form layout="vertical" name="basic">
+                <Form layout="vertical" name="basic" form={form} onFinish={updateData}>
                     <Form.Item label="Country Name" name="countryName"  rules={[{ required: true, message: 'Country Name is required!' }]}>
-                        <Input onChange={(e) => setCountryName(e.target.value)} defaultValue={countryName}/>
+                        <Input onChange={(e) => form.setFieldsValue({countryName: e.target.value})}/>
                     </Form.Item>
 
                     <Form.Item label="Google Extension" name="googleExtension" rules={[{ required: true, message: 'Google Extension is required!' }]}>
-                        <Input onChange={(e) => setGoogleExt(e.target.value)} defaultValue={countryCode}/>
+                        <Input onChange={(e) => form.setFieldsValue({googleExtension: e.target.value})}/>
                     </Form.Item>
 
                     <Form.Item label="Country Code" name="iso2" rules={[{ required: true, message: 'Country Code is required!' }]}>
-                        <Input onChange={(e) => setCountryCode(e.target.value)} defaultValue={languageCode}/>
+                        <Input onChange={(e) => form.setFieldsValue({iso2: e.target.value})}/>
                     </Form.Item>
 
                     <Form.Item label="Language Code" name="languageCode" rules={[{ required: true, message: 'Language Code is required!' }]}>
-                        <Input onChange={(e) => setLanguageCode(e.target.value)} defaultValue={googleExt}/>
+                        <Input onChange={(e) => form.setFieldsValue({languageCode: e.target.value})}/>
                     </Form.Item>
 
                     <Row>
@@ -195,9 +214,8 @@ export default function Country() {
                                 block
                                 type="primary"
                                 htmlType="submit"
-                                onClick={updateData}
                             >
-                                {edit ? "Edit" : "Create"}
+                                Save
                             </Button>
                         </Col>
 

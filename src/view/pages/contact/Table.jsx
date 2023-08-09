@@ -60,8 +60,7 @@ export default function UsersList() {
       <div className="hp-mb-32">
         <Row gutter={[32, 32]} justify="space-between">
           <BreadCrumbs
-            breadCrumbParent="Applications"
-            breadCrumbActive="Contact"
+            breadCrumbActive="Company"
           />
 
           <Col md={15} span={24}>

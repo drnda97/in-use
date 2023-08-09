@@ -38,10 +38,10 @@ const AddEventSidebar = (props) => {
   const [value, setValue] = useState([{ value: "Travel", label: "Travel" }]);
 
   const options = [
-    { value: "Travel", label: "Travel", badge: "#C903FF" },
-    { value: "Social", label: "Social", badge: "#00F7BF" },
-    { value: "Work", label: "Work", badge: "#FFC700" },
-    { value: "Important", label: "Important", badge: "#FF0022" },
+    { value: "trademark", label: "Trademark", badge: "#C903FF" },
+    // { value: "Social", label: "Social", badge: "#00F7BF" },
+    // { value: "Work", label: "Work", badge: "#FFC700" },
+    // { value: "Important", label: "Important", badge: "#FF0022" },
   ];
 
   const OptionComponent = ({ data, ...props }) => {

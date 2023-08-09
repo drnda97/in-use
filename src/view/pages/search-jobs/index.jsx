@@ -9,16 +9,11 @@ import {RiCalendarLine, RiCloseFill, RiMenuFill} from "react-icons/ri";
 import dayjs from "dayjs";
 import {getCountries} from "../../../redux/country/countryActions";
 
-function DownOutlined() {
-    return null;
-}
-
 export default function Country() {
     const dispatch = useDispatch();
     const [form] = Form.useForm();
     const dateFormat = 'YYYY-MM-DD';
 
-    const customise = useSelector(state => state.customise)
     const {countries} = useSelector((state) => state.country);
 
     const [jobs, setJobs] = useState([]);
@@ -60,11 +55,20 @@ export default function Country() {
         </div>
     );
 
-    const linkDetailsLink = (data) => (
-        <Link to={`/link-details/${data.id}`}>
-            {data.term}
-        </Link>
-    )
+    const linkDetailsLink = (data) => {
+        if (data.is_done) {
+            return (
+                <Link to={`/link-details/${data.id}`}>
+                    {data.term}
+                </Link>
+            )
+        }
+        return (
+            <span>
+                {data.term}
+            </span>
+        )
+    }
 
     const columns = [
         {
@@ -100,6 +104,7 @@ export default function Country() {
             render: (data) => actionButtons(data),
         },
     ];
+
     const onFinish = async (values) => {
         const params = {
             term: values.term,
@@ -119,22 +124,6 @@ export default function Country() {
         // Can not select days before today and today
         return current && current < dayjs().endOf('day');
     };
-
-    const items = (
-        <>
-            {
-                countries.map((country) => {
-                    return (
-                        <a onClick={(e) => e.preventDefault()} key={country.id}>
-                            <Space>
-                                {country.country_name}
-                            </Space>
-                        </a>
-                    )
-                })
-            }
-        </>
-    )
 
     return (
         <>

@@ -15,6 +15,7 @@ export default function LinkDetails() {
     let { id } = useParams();
 
     const [array, setArray] = useState([])
+    // const [newArray, setNewArray] = useState([])
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [totalPages, setTotalPages] = useState(0)
     const [page, setPage] = useState(1)
@@ -62,7 +63,7 @@ export default function LinkDetails() {
         },
         {
             title: 'Search Engine',
-            dataIndex: 'search_term',
+            dataIndex: 'search_engine',
             key: 'search_engine',
         },
         {

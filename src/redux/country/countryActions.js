@@ -18,7 +18,11 @@ export const updateCountry = createAsyncThunk('COUNTRY/updateCountry', async (da
 });
 
 export const deleteCountry = createAsyncThunk('COUNTRY/deleteCountry', async (data) => {
-    return await Repository.delete(`${apiUrl}/country/delete`, data);
+    return await Repository.delete(`${apiUrl}/country/delete?id=${data.id}`, {
+        data: {
+            id: data.id
+        }
+    });
 });
 
 export const updateSearchEngines = createAsyncThunk('COUNTRY/updateSearchEngines', async (data) => {

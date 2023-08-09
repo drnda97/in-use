@@ -170,6 +170,7 @@ export default function Analytics() {
                         <ListCard
                             title='Finished Search Jobs'
                             date=''
+                            linkForMore={"/search-jobs"}
                             list={finished?.map((finish) => {
                                 return {
                                     id: finish.id,
@@ -186,6 +187,7 @@ export default function Analytics() {
                         <ListCard
                             title='Upcoming Search Jobs'
                             date=''
+                            linkForMore={"/search-jobs"}
                             list={notFinished[0]?.map((finish, index) => {
                                 return {
                                     id: finish.id,

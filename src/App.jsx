@@ -24,7 +24,6 @@ export default function App() {
   useEffect(() => {
     if (getTokenData()) {
       setTimer();
-      console.log('odje sam')
     }
     if (!getTokenData() && getRefreshToken()) {
       removeCookies();

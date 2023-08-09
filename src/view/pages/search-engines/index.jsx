@@ -13,12 +13,12 @@ import {RiCloseFill} from "react-icons/ri";
 
 export default function SearchEngines() {
     const dispatch = useDispatch();
+    const [form] = Form.useForm();
+
     const {searchEngines} = useSelector((state) => state.searchEngines);
 
     const [modalVisible, setModalVisible] = useState(false);
     const [edit, setEdit] = useState(false);
-    const [name, setName] = useState("");
-    const [url, setUrl] = useState("");
 
     useEffect(() => {
         getData();
@@ -30,11 +30,11 @@ export default function SearchEngines() {
 
     const modalShow = (edit, data = null) => {
         if (data) {
-            setName(data.name);
-            setUrl(data.url);
+            form.setFieldsValue({name: data.name});
+            form.setFieldsValue({url: data.url});
         } else {
-            setName("");
-            setUrl("");
+            form.setFieldsValue({name: ""});
+            form.setFieldsValue({url: ""});
         }
         setEdit(edit);
         setModalVisible(true);
@@ -44,18 +44,20 @@ export default function SearchEngines() {
         setModalVisible(false);
     };
 
-    const updateData = async () => {
+    const updateData = async (values) => {
         let params = {
-            name: name,
-            url: url
+            name: values.name,
+            url: values.url
         }
         if (edit){
             params.id = edit;
             await dispatch(updateSearchEngine(params));
             setModalVisible(false);
+            await getData();
             return
         }
         await dispatch(createSearchEngine(params));
+        await getData();
         setModalVisible(false);
     };
 
@@ -94,7 +96,6 @@ export default function SearchEngines() {
         },
     ];
 
-
     return (
         <div>
             <Modal
@@ -108,22 +109,22 @@ export default function SearchEngines() {
                     <RiCloseFill className="remix-icon text-color-black-100" size={24} />
                 }
             >
-                <Form layout="vertical" name="basic" initialValues={{ name, url }}>
+                <Form layout="vertical" name="basic" form={form} onFinish={updateData}>
                     <Form.Item label="Name" name="name">
-                        <Input defaultValue={name} onChange={(e) => setName(e.target.value)} />
+                        <Input onChange={(e) => form.setFieldsValue({name: e.target.value})} disabled={edit} />
                     </Form.Item>
 
                     <Form.Item label="Url" name="url">
-                        <Input defaultValue={url} onChange={(e) => setUrl(e.target.value)} />
+                        <Input onChange={(e) => form.setFieldsValue({url: e.target.value})} />
                     </Form.Item>
                     <Row>
                         <Col md={12} span={24} className="hp-pr-sm-0 hp-pr-12">
                             <Button
                                 block
                                 type="primary"
-                                onClick={() => updateData()}
+                                htmlType="submit"
                             >
-                                {edit ? "Edit" : "Create"}
+                                Save
                             </Button>
                         </Col>
 

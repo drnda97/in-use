@@ -74,6 +74,11 @@ export default function ListCard(props) {
           </Row>
         )
       }
+      <div className={"text-center mt-4"}>
+        <Link to={props.linkForMore} className={"link-item"}>
+          View More
+        </Link>
+      </div>
     </>
   );
 }
