@@ -4,7 +4,12 @@ import CustomizedFilterPanelTable from "../../components/data-display/table/cust
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {Play} from "iconsax-react";
-import {createSearchJob, getSearchJobs} from "../../../redux/searchJobs/searchJobActions";
+import {
+    createSearchJob,
+    getSearchJobs,
+    getSearchJobsInProgress,
+    runJob
+} from "../../../redux/searchJobs/searchJobActions";
 import {RiCalendarLine, RiCloseFill, RiMenuFill} from "react-icons/ri";
 import dayjs from "dayjs";
 import {getCountries} from "../../../redux/country/countryActions";
@@ -26,6 +31,7 @@ export default function Country() {
 
     const getData = async () => {
         await dispatch(getSearchJobs({is_done: true})).then((res) => setJobs(res.payload.data));
+        await dispatch(getSearchJobsInProgress()).then((res) => setJobs(data => [...res.payload.data, ...data]));
         await dispatch(getSearchJobs({is_done: false})).then((res) => setJobs(data => [...res.payload.data, ...data]));
         await dispatch(getCountries());
     }
@@ -42,8 +48,8 @@ export default function Country() {
         <div className={"d-flex"}>
             <Tooltip title="Start">
                 <Button
-                    onClick={() => console.log('pusti crawler')}
-                    disabled={data.is_done}
+                    onClick={() => runCrawler(data)}
+                    disabled={data.is_done || data.in_progress}
                     ghost
                     type="primary"
                     className="hp-border-none hp-hover-bg-black-10 hp-hover-bg-dark-100"
@@ -56,7 +62,7 @@ export default function Country() {
     );
 
     const linkDetailsLink = (data) => {
-        if (data.is_done) {
+        if (data.is_done && !data.in_progress) {
             return (
                 <Link to={`/link-details/${data.id}`}>
                     {data.term}
@@ -114,6 +120,8 @@ export default function Country() {
             search_date: searchDate,
         }
         await dispatch(createSearchJob(params));
+        contactModalCancel();
+        await getData();
     }
 
     const setCalendarFormat = (date, dateString) => {
@@ -125,91 +133,97 @@ export default function Country() {
         return current && current < dayjs().endOf('day');
     };
 
+    const runCrawler = async (data) => {
+        const formData = new FormData;
+        formData.append('search_job_id', data.id);
+        dispatch(runJob(formData));
+        await getData();
+    };
+
     return (
         <>
-        <Row>
-            <Col span={24}>
-                <div className={"d-flex justify-content-between mb-4"}>
-                    <h2>Search Jobs</h2>
-                    {/*<Link to="/add-new-term">*/}
-                    <Button onClick={contactModalShow}>Add new Term</Button>
-                    {/*</Link>*/}
-                </div>
-                <CustomizedFilterPanelTable data={jobs} columnsName={columns}/>
-                <Modal
-                    title="Contact Edit"
-                    width={420}
-                    centered
-                    visible={contactModalVisible}
-                    onCancel={contactModalCancel}
-                    footer={null}
-                    closeIcon={
-                        <RiCloseFill className="remix-icon text-color-black-100" size={24}/>
-                    }
-                >
-                    <Form layout="vertical" name="basic" form={form} onFinish={onFinish}>
-                        <Form.Item label="Term" name="term" rules={[{required: true, message: "Please enter Term!"}]}>
-                            <Input onChange={(e) => form.setFieldsValue({term: e.target.value})}/>
-                        </Form.Item>
+            <Row>
+                <Col span={24}>
+                    <div className={"d-flex justify-content-between mb-4"}>
+                        <h2>Search Jobs</h2>
+                        {/*<Link to="/add-new-term">*/}
+                        <Button onClick={contactModalShow}>Add new Term</Button>
+                        {/*</Link>*/}
+                    </div>
+                    <CustomizedFilterPanelTable data={jobs} columnsName={columns}/>
+                    <Modal
+                        title="Contact Edit"
+                        width={420}
+                        centered
+                        visible={contactModalVisible}
+                        onCancel={contactModalCancel}
+                        footer={null}
+                        closeIcon={
+                            <RiCloseFill className="remix-icon text-color-black-100" size={24}/>
+                        }
+                    >
+                        <Form layout="vertical" name="basic" form={form} onFinish={onFinish}>
+                            <Form.Item label="Term" name="term"
+                                       rules={[{required: true, message: "Please enter Term!"}]}>
+                                <Input onChange={(e) => form.setFieldsValue({term: e.target.value})}/>
+                            </Form.Item>
 
-                        <Form.Item label="Owner" name="owner"
-                                   rules={[{required: true, message: "Please enter Owner!"}]}>
-                            <Input onChange={(e) => form.setFieldsValue({owner: e.target.value})}/>
-                        </Form.Item>
+                            <Form.Item label="Owner" name="owner">
+                                <Input onChange={(e) => form.setFieldsValue({owner: e.target.value})}/>
+                            </Form.Item>
 
-                        <Form.Item label="Location" name="location" rules={[{required: true, message: "Please enter Location!"}]}>
-                            <select className={"customDropDown"} onChange={(e) => form.setFieldsValue({location: e.target.value})}>
-                                {
-                                    countries.map((country) => {
-                                        return (
-                                            <option key={country.id} value={country.country_name}>{country.country_name}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                    </Form.Item>
+                            <Form.Item label="Location" name="location"
+                                       rules={[{required: true, message: "Please enter Location!"}]}>
+                                <select className={"customDropDown"}
+                                        onChange={(e) => form.setFieldsValue({location: e.target.value})}>
+                                    {
+                                        countries.map((country) => {
+                                            return (
+                                                <option key={country.id}
+                                                        value={country.country_name}>{country.country_name}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </Form.Item>
 
-                    <Form.Item label="Additional Words" name="additional_words"
-                               rules={[{required: true, message: "Please enter Additional Words!"}]}>
-                        <Input onChange={(e) => form.setFieldsValue({additional_words: e.target.value})}/>
-                    </Form.Item>
+                            <Form.Item label="Additional Words" name="additional_words">
+                                <Input onChange={(e) => form.setFieldsValue({additional_words: e.target.value})}/>
+                            </Form.Item>
 
-                    <Form.Item label="Search Date" name="search_date"
-                               rules={[{required: true, message: "Please enter Search Date!"}]}>
-                        <DatePicker
-                            format={dateFormat}
-                            disabledDate={disabledDate}
-                            className="hp-w-100"
-                            suffixIcon={
-                                <RiCalendarLine className="remix-icon hp-text-color-black-60"/>
-                            }
-                            onChange={setCalendarFormat}
-                        />
-                    </Form.Item>
+                            <Form.Item label="Search Date" name="search_date"
+                                       rules={[{required: true, message: "Please enter Search Date!"}]}>
+                                <DatePicker
+                                    format={dateFormat}
+                                    disabledDate={disabledDate}
+                                    className="hp-w-100"
+                                    suffixIcon={
+                                        <RiCalendarLine className="remix-icon hp-text-color-black-60"/>
+                                    }
+                                    onChange={setCalendarFormat}
+                                />
+                            </Form.Item>
+                            <Row>
+                                <Col md={12} span={24} className="hp-pr-sm-0 hp-pr-12">
+                                    <Button
+                                        block
+                                        type="primary"
+                                        htmlType="submit"
+                                    >
+                                        Create
+                                    </Button>
+                                </Col>
 
-
-                    <Row>
-                        <Col md={12} span={24} className="hp-pr-sm-0 hp-pr-12">
-                            <Button
-                                block
-                                type="primary"
-                                htmlType="submit"
-                            >
-                                Create
-                            </Button>
-                        </Col>
-
-                        <Col md={12} span={24} className="hp-mt-sm-12 hp-pl-sm-0 hp-pl-12">
-                            <Button block onClick={contactModalCancel}>
-                                Cancel
-                            </Button>
-                        </Col>
-                    </Row>
-                </Form>
-            </Modal>
-        </Col>
-        </Row>
-</>
-)
-    ;
+                                <Col md={12} span={24} className="hp-mt-sm-12 hp-pl-sm-0 hp-pl-12">
+                                    <Button block onClick={contactModalCancel}>
+                                        Cancel
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Form>
+                    </Modal>
+                </Col>
+            </Row>
+        </>
+    );
 }

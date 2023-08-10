@@ -13,6 +13,10 @@ export const createSearchJob = createAsyncThunk('SEARCH_JOBS/createSearchJob', a
     return await Repository.post(`${apiUrl}/search_job/create`, data);
 });
 
+export const runJob = createAsyncThunk('SEARCH_JOBS/runJob', async (data) => {
+    return await Repository.post(`${apiUrl}/search_job/run-job`, data);
+});
+
 export const updateSearchJob = createAsyncThunk('SEARCH_JOBS/updateSearchJob', async (data) => {
     return await Repository.put(`${apiUrl}/search_job/update`, data);
 });

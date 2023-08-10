@@ -123,7 +123,7 @@ export default function LinkDetails() {
                             <Col>
                                 <Button type="primary" onClick={() => console.log('generate report')}>
                                     <Plus set="curved" size={18} />
-                                    <span class="hp-ml-8">Generate Report</span>
+                                    <span className="hp-ml-8">Generate Report</span>
                                 </Button>
                             </Col>
                         </Row>
