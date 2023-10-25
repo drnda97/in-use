@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const token = cookies.get('token');
 
-const domain = 'https://aws-api.brandschecker.com:8443/trademark_check';
+const domain = 'https://admin.brandschecker.com:8443/trademark_check';
 export const apiUrl = `${domain}/api/v1`;
 
 const customHeaders = {
